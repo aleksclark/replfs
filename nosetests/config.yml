@@ -1,0 +1,10 @@
+metadata_store: memory
+lock_timeout: 5
+replication_level: 1
+debug_repl: true
+debug_memory_store: true
+log_file: log_repl.log
+bricks:
+    - /home/aleks/data/work/replfs/test1
+    - /home/aleks/data/work/replfs/test2
+    - /home/aleks/data/work/replfs/test3
