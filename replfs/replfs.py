@@ -6,7 +6,6 @@ import os
 import sys
 import errno
 import hashlib
-import yaml
 import pprint
 import logging
 
@@ -14,7 +13,7 @@ from fuse import FUSE, FuseOSError, Operations
 from errno import ENOENT
 from random import sample, choice
 
-import MemoryStore
+from replfs.memory_store.memory_store import MemoryStore
 
 class ReplFS(Operations):
     def __init__(self, config):
@@ -184,13 +183,3 @@ class ReplFS(Operations):
         if self.config['debug_repl']:
             nargs = ("REPL", args)
             logging.debug(nargs)
-
-
-def main(mountpoint, config):
-    conf_stream = open(config, 'r')
-    config_hash = yaml.load(conf_stream)
-    print(config_hash)
-    FUSE(ReplFS(config_hash), mountpoint, foreground=True)
-
-if __name__ == '__main__':
-    main('mount', 'config.yml')
